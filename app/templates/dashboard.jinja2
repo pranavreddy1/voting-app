@@ -1,0 +1,47 @@
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+  <link href="{{ url_for('static', filename='dist/css/dashboard.css') }}" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://use.typekit.net/sus7rlu.css">
+{% endblock %}
+
+{% block content %}
+  <h1>{{ body }}</h1>
+
+  {% if current_user.is_authenticated %}
+    <p>Hi {{ current_user.name }}! <br>Vote for your favorite superhero.</p>
+    <a href="{{ url_for('main_bp.logout') }}">Log out</a>
+  {% endif %}
+
+  <table style="width:100%">
+  <tr>
+  <td>
+  <img src="{{ url_for('static', filename='dist/img/hulk.jpeg') }}" alt="Vote for Hulk" width="200" height="200"/>
+  <div style="width:200px; margin: 0 auto; ">
+  <a href="/vote?votefor=hulk" title="Vote for Hulk"> Vote for Hulk</a> <br>
+  </div>
+  </td>
+  <td>
+  <div>
+ <img src="{{ url_for('static', filename='dist/img/ironman.jpeg') }}" alt="Vote for Ironman" width="200" height="200"/>
+  <div style="width:200px; margin: 0 auto; ">
+  <a href="/vote?votefor=ironman" title="Vote for Ironman"> Vote for Ironman</a> <br>
+  </div>
+  </td>
+  </tr>
+
+  <tr>
+  <td>   <img src="{{ url_for('static', filename='dist/img/batman.jpg') }}" alt="Vote for Batman" width="200" height="200"/>
+  <div style="width:200px; margin: 0 auto; ">
+  <a href="/vote?votefor=batman" title="Vote for Batman"> Vote for Batman</a> <br>
+  </div></td>
+
+  <td>  <img src="{{ url_for('static', filename='dist/img/superman.jpeg') }}" alt="Vote for Superman" width="200" height="200"/>
+  <div style="width:200px; margin: 0 auto; ">
+  <a href="/vote?votefor=superman" title="Vote for Superman"> Vote for Superman</a> <br>
+  </div></td>
+  </tr>
+  </table>
+  
+
+{% endblock %}

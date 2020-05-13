@@ -1,0 +1,69 @@
+
+<!doctype html>
+<head>
+    <title>Admin Page.</title>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+    
+      // Load the Visualization API and the ColumnChart package.
+      google.load('visualization', '1', {'packages':['corechart']});
+      
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+      
+      // Callback that creates and populates a data table, 
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create our data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Hero');
+        data.addColumn('number', 'Number of Votes');
+        data.addRows([
+                // ['Batman', 4],
+                {%- for hero, cnt in data %}
+                ['{{ hero }}', {{ cnt }}],
+                {%- endfor %}
+        ]);
+
+        var chart = new google.visualization.ColumnChart(
+                document.getElementById('chart_div'));
+        chart.draw(data, {legend: 'none', vAxis: {baseline: 0}
+                , backgroundColor: '#5eb9d7'});
+      }
+    </script>
+
+    <style>
+        #content {
+            width: 80%;
+            height: 60%;
+            min-width: 800px;
+
+            /* Center the div. */
+            margin-right: auto;
+            margin-left: auto;
+
+            text-align: center;
+        }
+
+        #chart_div {
+            min-height: 400px;
+            background: #5eb9d7;
+
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- Include more content here or below the chart, using Flask / Jinja. -->
+    <div id="content">
+        <h1>Welcome Admin</h1> <br>
+
+        <h1>Votes per Candidate</h1>
+        <div id="chart_div"></div>
+        <div>  <a href="/logout" title="Vote for Hulk"><h3>Click to logout</h3></a>
+        </div>
+    </div>
+</body>
