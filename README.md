@@ -1,5 +1,5 @@
 # voting-app
-a REST based voting web app
+a REST based voting web app - Powered by LR
 
 Instruction for firing up the first time:
  -- Perform a "pip install -r requirements.txt"
